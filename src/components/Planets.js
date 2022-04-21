@@ -9,8 +9,13 @@ const fetchPlanets = async () => {
 };
 
 function Planets() {
-  //'status' shows the query status
-  const { data, status } = useQuery("planets", fetchPlanets);
+  //'status' shows the query status like: error, loading, success
+  //useQuery takes in 3 arguments: the query key(string) to use for this query, the query function, that gets a data, third argument is optional, we added config params to keep data fresh for 2sec. before it gets staled(old data).
+  const { data, status } = useQuery("planets", fetchPlanets, {
+    staleTime: 0,
+    // cacheTime: 10,
+    // onSuccess: console.log("data fetched"),
+  });
   console.log(data);
 
   return (
