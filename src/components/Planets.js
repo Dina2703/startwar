@@ -14,8 +14,10 @@ function Planets() {
   //useQuery takes in 3 arguments: the query key(string) to use for this query, the query function, that gets a data, third argument is optional, we added config params to keep data fresh for 2sec. before it gets staled(old data).
   //["planets", 'hello World'],"planets" is a key, the second argument is a variable, that we want to pass into query func,
   const [page, setPage] = useState(1);
-  const { data, status } = useQuery(["planets", page], () =>
-    fetchPlanets(page)
+  const { data, status } = useQuery(
+    ["planets", page],
+    () => fetchPlanets(page),
+    { keepPreviousData: true }
   );
   return (
     <div>
